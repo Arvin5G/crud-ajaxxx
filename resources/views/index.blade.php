@@ -6,7 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>CRUD App Laravel 8 & Ajax</title>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> --}}
+
+
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
   <link rel='stylesheet'
     href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
@@ -61,10 +66,7 @@
   </div>
 </div>
 {{-- add new employee modal end --}}
-<div class="d-flex justify-content-center bg-warning">
-    <h1>SAMPLE</h1>
-    <h2>sample</h2>
-</div>
+
 {{-- edit employee modal start --}}
 <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
   data-bs-backdrop="static" aria-hidden="true">
@@ -124,10 +126,10 @@
     <div class="row my-5">
       <div class="col-lg-12">
         <div class="card shadow">
-          <div class="card-header bg-danger d-flex justify-content-between align-items-center">
-            <h3 class="text-light">Manage Employees</h3>
-            <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
-                class="bi-plus-circle me-2"></i>Add New Employee</button>
+          <div class="card-header bg-primary d-flex justify-content-between align-items-center p-4">
+            <h5 class="text-light">Manage Employees</h5>
+            <button data-toggle="tooltip" data-placement="top" title="Add Employee" class="original-button btn btn-light d-flex justify-content-center align-items-center" style="border-radius: 10%; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
+                class="bi bi-person-plus-fill fs-5 text-primary"></i></button>
           </div>
           <div class="card-body" id="show_all_employees">
             <h1 class="text-center text-secondary my-5">Loading...</h1>
@@ -275,7 +277,6 @@
             "paging": true, // Enable pagination
             "searching": true, // Enable search bar
             "ordering": false // Disable sorting
-        
             });
           }
         });
@@ -286,6 +287,9 @@
 
 
 <style>
+    .form-select form-select-sm{
+        width: 100%;
+    }
     .table tbody td {
         padding: 20px;
         border:none;
@@ -293,11 +297,42 @@
     }
     .table thead th {
         border: none;
-        padding:10px;
-        color: black;
+        padding:20px;
+        color:#0d6efd;
         font-size: 20px;
     }
+    .card-body {
+        max-width: 100%;
+        overflow-x: auto; /* Enable horizontal scrollbar if needed */
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
     
+    .original-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  color: #9b9b9b;
+  font-size: 18px;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  background-image: ;
+}
+
+.original-button:hover {
+  transform: translateY(2px);
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+}
 </style>
 </body>
 

@@ -40,7 +40,7 @@ class EmployeeController extends Controller {
                 <td class="text-muted">' . $emp->post . '</td>
                 <td class="text-muted">' . $emp->phone . '</td>
                 <td class="text-muted">
-                  <a href="#" id="' . $emp->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal" style="color: #fff;border-radius: 10%; background-color: green; padding: 5px;"><i class="bi-pencil-square fs-5"></i></a>
+                  <a href="#" id="' . $emp->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-pencil-square fs-5"></i></a>
 
                   <a href="#" id="' . $emp->id . '" class="mx-1 deleteIcon" style="color: #fff;border-radius: 10%; background-color: #dc3545; padding: 5px;"><i class="bi-trash fs-5"></i></a>
                 </td>
@@ -49,7 +49,7 @@ class EmployeeController extends Controller {
 			$output .= '</tbody></table>';
 			echo $output;
 		} else {
-			echo '<h1 class="text-center text-secondary my-5">No record present in the database!</h1>';
+			echo '<center><img src="https://bharatthresher.com/default/default-img/empty1.png" width="200" class="m-5"></center>';
 		}
 	}
 
