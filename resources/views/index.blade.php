@@ -131,7 +131,7 @@
             <button data-toggle="tooltip" data-placement="top" title="Add Employee" class="original-button btn btn-light d-flex justify-content-center align-items-center" style="border-radius: 10%; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
                 class="bi bi-person-plus-fill fs-5 text-primary"></i></button>
           </div>
-          <div class="card-body" id="show_all_employees">
+          <div class="card-body p-5" id="show_all_employees">
             <h1 class="text-center text-secondary my-5">Loading...</h1>
           </div>
         </div>
@@ -277,27 +277,30 @@
             "paging": true, // Enable pagination
             "searching": true, // Enable search bar
             "ordering": false // Disable sorting
+            
             });
           }
         });
       }
     });
   </script>
-
-
+ 
 
 <style>
-    .form-select form-select-sm{
+    .table{
         width: 100%;
+    /* max-width: 500px; */
+    overflow-x: auto;
     }
     .table tbody td {
         padding: 20px;
         border:none;
-        
+        margin-bottom: 0;
     }
     .table thead th {
         border: none;
-        padding:20px;
+        margin: 90px;
+        padding:50px;
         color:#0d6efd;
         font-size: 20px;
     }

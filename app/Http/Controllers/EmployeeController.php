@@ -18,7 +18,7 @@ class EmployeeController extends Controller {
 		$emps = Employee::all();
 		$output = '';
 		if ($emps->count() > 0) {
-			$output .= '<table class="table w-100 table-sm text-center align-middle">
+			$output .= '<table class="table table-striped table-sm text-center align-middle">
             <thead>
                 <tr>
                 
