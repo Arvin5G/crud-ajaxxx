@@ -288,7 +288,7 @@
 <style>
     .table tbody td {
         padding: 20px;
-        border-bottom-color: gray;
+        border:none;
         
     }
     .table thead th {
