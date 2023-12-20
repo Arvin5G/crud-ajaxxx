@@ -18,28 +18,29 @@ class EmployeeController extends Controller {
 		$emps = Employee::all();
 		$output = '';
 		if ($emps->count() > 0) {
-			$output .= '<table class="table table-striped table-sm text-center align-middle">
-            <thead>
+			$output .= '<table class="table p-5 table-striped table-sm text-center align-middle">
+            <thead class="table-primary">
                 <tr>
-                
-                <th>Avatar</th>
-                <th>Name</th>
-                <th>E-mail</th>
-                <th>Post</th>
-                <th>Phone</th>
-                <th>Action</th>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th>Expiry Date</th>
+                <th>Available</th>
+                <th>Image</th>
+				<th>Action</th>
                 </tr>
             </thead>
             <tbody>';
 			foreach ($emps as $emp) {
 				$output .= '<tr>
                 
-                <td><img src="storage/images/' . $emp->avatar . '" style="width: 50px; height: 50px;" class="img-thumbnail rounded-circle"></td>
+                <td>' . $emp->first_name . '</td>
                 <td class="text-muted">' . $emp->first_name . '</td>
                 <td class="text-muted">' . $emp->email . '</td>
                 <td class="text-muted">' . $emp->post . '</td>
                 <td class="text-muted">' . $emp->phone . '</td>
-                <td class="text-muted">
+				<td class="text-muted"><img src="storage/images/' . $emp->avatar . '" style="width: 80px; height: 80px;" ></td>
+                <td>
                   <a href="#" id="' . $emp->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-pencil-square fs-5"></i></a>
 
                   <a href="#" id="' . $emp->id . '" class="mx-1 deleteIcon" style="color: #fff;border-radius: 10%; background-color: #dc3545; padding: 5px;"><i class="bi-trash fs-5"></i></a>
@@ -49,7 +50,8 @@ class EmployeeController extends Controller {
 			$output .= '</tbody></table>';
 			echo $output;
 		} else {
-			echo '<center><img src="https://bharatthresher.com/default/default-img/empty1.png" width="200" class="m-5"></center>';
+			echo '<center><img src="https://cdn-icons-png.flaticon.com/128/7486/7486809.png" width="100" class=""></center>';
+			echo '<center><div class="d-flex justify-content-center"><h5 class="text-primary mt-3">No product found in database.</h5></div></center>';
 		}
 	}
 
