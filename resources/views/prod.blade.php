@@ -7,119 +7,117 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>CRUD App Laravel 8 & Ajax</title>
-  {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> --}}
-
-
+  <title>Arvin Crud Laravel & Ajax</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
   <link rel='stylesheet'
     href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 
 </head>
-{{-- add new employee modal start --}}
-<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+{{-- add new product modal start --}}
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="exampleModalLabel"
   data-bs-backdrop="static" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="#" method="POST" id="add_employee_form" enctype="multipart/form-data">
+      <form action="#" method="POST" id="add_product_form" enctype="multipart/form-data">
         @csrf
         <div class="modal-body p-4 bg-light">
           <div class="row">
             <div class="col-lg">
-              <label for="fname">First Name</label>
-              <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+              <label for="p_name">Product Name</label>
+              <input type="text" name="p_name" class="form-control" placeholder="Product Name" required>
             </div>
             <div class="col-lg">
-              <label for="lname">Last Name</label>
-              <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+              <label for="p_unit">Unit</label>
+              <input type="text" name="p_unit" class="form-control" placeholder="Unit" required>
             </div>
           </div>
           <div class="my-2">
-            <label for="email">E-mail</label>
-            <input type="email" name="email" class="form-control" placeholder="E-mail" required>
+            <label for="p_price">Price</label>
+            <input type="number" name="p_price" class="form-control" placeholder="Price" required>
           </div>
           <div class="my-2">
-            <label for="phone">Phone</label>
-            <input type="tel" name="phone" class="form-control" placeholder="Phone" required>
+            <label for="p_xdate">Expiry Date</label>
+            <input type="date" name="p_xdate" class="form-control" placeholder="" required>
           </div>
           <div class="my-2">
-            <label for="post">Post</label>
-            <input type="date" name="post" class="form-control" placeholder="Post" required>
+            <label for="p_available">Available</label>
+            <input type="number" name="p_available" class="form-control" placeholder="Available" required>
           </div>
           <div class="my-2">
-            <label for="avatar">Select Avatar</label>
-            <input type="file" name="avatar" class="form-control" required>
+            <label for="p_image">Select Image</label>
+            <input type="file" name="p_image" class="form-control" required>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" id="add_employee_btn" class="btn btn-primary">Add Employee</button>
+          <button type="submit" id="add_product_button" class="btn btn-primary">Add Product</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-{{-- add new employee modal end --}}
+{{-- add new product modal end --}}
 
-{{-- edit employee modal start --}}
-<div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+{{-- edit product modal start --}}
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel"
   data-bs-backdrop="static" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="#" method="POST" id="edit_employee_form" enctype="multipart/form-data">
+      <form action="#" method="POST" id="edit_product_form" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="emp_id" id="emp_id">
-        <input type="hidden" name="emp_avatar" id="emp_avatar">
+        <input type="hidden" name="prod_id" id="prod_id">
+        <input type="hidden" name="prod_p_image" id="prod_p_image">
         <div class="modal-body p-4 bg-light">
           <div class="row">
             <div class="col-lg">
-              <label for="fname">First Name</label>
-              <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name" required>
+              <label for="p_name">Product Name</label>
+              <input type="text" name="p_name" id="p_name" class="form-control" placeholder="Product Name" required>
             </div>
             <div class="col-lg">
-              <label for="lname">Last Name</label>
-              <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name" required>
+              <label for="p_unit">Unit</label>
+              <input type="text" name="p_unit" id="p_unit" class="form-control" placeholder="Unit" required>
             </div>
           </div>
           <div class="my-2">
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required>
+            <label for="p_price">Price</label>
+            <input type="number" name="p_price" id="p_price" class="form-control" placeholder="Price" required>
           </div>
           <div class="my-2">
-            <label for="phone">Phone</label>
-            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone" required>
+            <label for="p_xdate">Expiry Date</label>
+            <input type="date" name="p_xdate" id="p_xdate" class="form-control" placeholder="" required>
           </div>
           <div class="my-2">
-            <label for="post">Post</label>
-            <input type="date" name="post" id="post" class="form-control" placeholder="Post" required>
+            <label for="p_available">Available</label>
+            <input type="number" name="p_available" id="p_available" class="form-control" placeholder="Available" required>
           </div>
           <div class="my-2">
-            <label for="avatar">Select Avatar</label>
-            <input type="file" name="avatar" class="form-control">
+            <label for="p_image">Select Image</label>
+            <input type="file" name="p_image" class="form-control">
           </div>
-          <div class="mt-2" id="avatar">
+          <div class="mt-2" id="p_image">
 
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" id="edit_employee_btn" class="btn btn-success">Update Employee</button>
+          <button type="submit" id="edit_product_btn" class="btn btn-success">Update Product</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-{{-- edit employee modal end --}}
+{{-- edit product modal end --}}
 
 <body class="bg-light">
   <div class="container">
@@ -128,10 +126,10 @@
         <div class="card shadow">
           <div class="card-header bg-primary d-flex justify-content-between align-items-center p-4">
             <h3 class="text-light">Manage Products</h3>
-            <button data-toggle="tooltip" data-placement="top" title="Add Employee" class="vibrate-1 btn btn-light d-flex justify-content-center align-items-center" style="border-radius: 50%; width: 40px; height: 40px;" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
-                class="bi bi-person-plus-fill fs-5 text-primary"></i></button>
+            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-center align-items-center" style="border-radius: 50%; width: 40px; height: 40px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
+                class="bi bi-plus-square-dotted fs-5 text-primary"></i></button>
           </div>
-          <div class="card-body p-3" id="show_all_employees">
+          <div class="card-body p-3" id="show_all_products">
             <h3 class="text-center text-primary my-5">Loading...</h3>
           </div>
         </div>
@@ -142,16 +140,17 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script>
     $(function() {
 
-      // add new employee ajax request
-      $("#add_employee_form").submit(function(e) {
+      // add new product ajax request
+      $("#add_product_form").submit(function(e) {
         e.preventDefault();
         const fd = new FormData(this);
-        $("#add_employee_btn").text('Adding...');
+        $("#add_product_button").text('Adding...');
         $.ajax({
-          url: '{{ route('store') }}',
+          url: '{{ route('store1') }}',
           method: 'post',
           data: fd,
           cache: false,
@@ -160,52 +159,52 @@
           dataType: 'json',
           success: function(response) {
             if (response.status == 200) {
-              Swal.fire(
+                Swal.fire(
                 'Added!',
-                'Employee Added Successfully!',
+                'Product Added Successfully!',
                 'success'
               )
-              fetchAllEmployees();
+              fetchAllProducts();
             }
-            $("#add_employee_btn").text('Add Employee');
-            $("#add_employee_form")[0].reset();
-            $("#addEmployeeModal").modal('hide');
+            $("#add_product_button").text('Add Product');
+            $("#add_product_form")[0].reset();
+            $("#addProductModal").modal('hide');
           }
         });
       });
 
-      // edit employee ajax request
+      // edit product ajax request
       $(document).on('click', '.editIcon', function(e) {
         e.preventDefault();
         let id = $(this).attr('id');
         $.ajax({
-          url: '{{ route('edit') }}',
+          url: '{{ route('edit1') }}',
           method: 'get',
           data: {
             id: id,
             _token: '{{ csrf_token() }}'
           },
           success: function(response) {
-            $("#fname").val(response.first_name);
-            $("#lname").val(response.last_name);
-            $("#email").val(response.email);
-            $("#phone").val(response.phone);
-            $("#post").val(response.post);
-            $("#avatar").html(
-              `<img src="storage/images/${response.avatar}" width="100" class="img-fluid img-thumbnail">`);
-            $("#emp_id").val(response.id);
-            $("#emp_avatar").val(response.avatar);
+            $("#p_name").val(response.p_name);
+            $("#p_unit").val(response.p_unit);
+            $("#p_price").val(response.p_price);
+            $("#p_xdate").val(response.p_xdate);
+            $("#p_available").val(response.p_available);
+            $("#p_image").html(
+              `<img src="storage/images/${response.p_image}" width="100" class="img-fluid img-thumbnail">`);
+            $("#prod_id").val(response.id);
+            $("#prod_p_image").val(response.p_image);
           }
         });
       });
 
-      // update employee ajax request
-      $("#edit_employee_form").submit(function(e) {
+      // update product ajax request
+      $("#edit_product_form").submit(function(e) {
         e.preventDefault();
         const fd = new FormData(this);
-        $("#edit_employee_btn").text('Updating...');
+        $("#edit_product_btn").text('Updating...');
         $.ajax({
-          url: '{{ route('update') }}',
+          url: '{{ route('update1') }}',
           method: 'post',
           data: fd,
           cache: false,
@@ -216,19 +215,19 @@
             if (response.status == 200) {
               Swal.fire(
                 'Updated!',
-                'Employee Updated Successfully!',
+                'Product Updated Successfully!',
                 'success'
               )
-              fetchAllEmployees();
+              fetchAllProducts();
             }
-            $("#edit_employee_btn").text('Update Employee');
-            $("#edit_employee_form")[0].reset();
-            $("#editEmployeeModal").modal('hide');
+            $("#edit_product_btn").text('Update Product');
+            $("#edit_product_form")[0].reset();
+            $("#editProductModal").modal('hide');
           }
         });
       });
 
-      // delete employee ajax request
+      // delete product ajax request
       $(document).on('click', '.deleteIcon', function(e) {
         e.preventDefault();
         let id = $(this).attr('id');
@@ -244,7 +243,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
-              url: '{{ route('delete') }}',
+              url: '{{ route('delete1') }}',
               method: 'delete',
               data: {
                 id: id,
@@ -257,22 +256,22 @@
                   'Your file has been deleted.',
                   'success'
                 )
-                fetchAllEmployees();
+                fetchAllProducts();
               }
             });
           }
         })
       });
 
-      // fetch all employees ajax request
-      fetchAllEmployees();
+      // fetch all product ajax request
+      fetchAllProducts();
 
-      function fetchAllEmployees() {
+      function fetchAllProducts() {
         $.ajax({
-          url: '{{ route('fetchAll') }}',
+          url: '{{ route('fetchAll1') }}',
           method: 'get',
           success: function(response) {
-            $("#show_all_employees").html(response);
+            $("#show_all_products").html(response);
             $("table").DataTable({
             "paging": true, // Enable pagination
             "searching": true, // Enable search bar
@@ -287,6 +286,14 @@
  
 
 <style>
+  .custom-swal-text{
+    color: #0d6efd;
+    background-color: #0d6efd;
+  }
+  #custom-swal-text{
+    color: #0d6efd;
+    background-color: #0d6efd;
+  }
   .table{
       max-width: 100%;
       overflow-x: auto;
