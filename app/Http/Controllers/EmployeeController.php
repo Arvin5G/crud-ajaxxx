@@ -50,7 +50,7 @@ class EmployeeController extends Controller {
 			$output .= '</tbody></table>';
 			echo $output;
 		} else {
-			echo '<center><img src="https://cdn-icons-png.flaticon.com/128/7486/7486809.png" width="100" class=""></center>';
+			echo '<center><img src="https://cdn-icons-png.flaticon.com/128/7486/7486809.png" width="100"></center>';
 			echo '<center><div class="d-flex justify-content-center"><h5 class="text-primary mt-3">No product found in database.</h5></div></center>';
 		}
 	}
