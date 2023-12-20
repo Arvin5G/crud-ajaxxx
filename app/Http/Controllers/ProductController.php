@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class ProductController extends Controller {
 
@@ -36,14 +37,14 @@ class ProductController extends Controller {
                 
                 <td class="text-muted">' . $prod1->p_name . '</td>
                 <td class="text-muted">' . $prod1->p_unit . '</td>
-                <td class="text-muted">$ ' . $prod1->p_price . '</td>
-                <td class="text-muted">' . $prod1->p_xdate . '</td>
+                <td class="text-muted">&#8369; ' . number_format($prod1->p_price, 2, '.', '') . '</td>
+                <td class="text-muted"> ' .Carbon::parse($prod1->p_xdate)->format('F j, Y'). '</td>
                 <td class="text-muted">' . $prod1->p_available . '</td>
 				<td class="text-muted"><img src="storage/images/' . $prod1->p_image . '" style="width: 60px; height: 60px;" ></td>
                 <td>
                   <a href="#" id="' . $prod1->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editProductModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-pencil-square fs-5"></i></a>
-
-                  <a href="#" id="' . $prod1->id . '" class="mx-1 deleteIcon" style="color: #fff;border-radius: 10%; background-color: #dc3545; padding: 5px;"><i class="bi-trash fs-5"></i></a>
+                  <a href="#" id="' . $prod1->id . '" class="mx-1 viewIcon" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-eye fs-5"></i></a>
+                  <a href="#" id="' . $prod1->id . '" class="mx-1 deleteIcon" style="color: #fff;border-radius: 10%; color: #dc3545; "><i class="bi-trash fs-5"></i></a>
                 </td>
               </tr>';
 			}
@@ -70,6 +71,13 @@ class ProductController extends Controller {
 
 	// handle edit an Product ajax request
 	public function edit1(Request $request) {
+		$id = $request->id;
+		$prod1 = Product::find($id);
+		return response()->json($prod1);
+	}
+
+    // handle view an Product ajax request
+	public function view1(Request $request) {
 		$id = $request->id;
 		$prod1 = Product::find($id);
 		return response()->json($prod1);

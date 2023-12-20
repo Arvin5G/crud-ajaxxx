@@ -111,13 +111,67 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" id="edit_product_btn" class="btn btn-success">Update Product</button>
+          <button type="submit" id="edit_product_btn" class="btn btn-primary">Update Product</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 {{-- edit product modal end --}}
+
+{{-- view product modal start --}}
+<div class="modal fade" id="viewProductModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  data-bs-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="#" method="POST" id="view_product_form" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="prod1_id" id="prod_id">
+        <input type="hidden" name="prod1_p_image" id="prod_p_image">
+        <div class="modal-body p-4 bg-light">
+          <div class="row">
+            <div class="col-lg">
+              <label for="p1_name">Product Name</label>
+              <input type="text" name="p1_name" id="p1_name" class="form-control"  readonly>
+            </div>
+            <div class="col-lg">
+              <label for="p1_unit">Unit</label>
+              <input type="text" name="p1_unit" id="p1_unit" class="form-control"  readonly>
+            </div>
+          </div>
+          <div class="my-2">
+            <label for="p1_price">Price</label>
+            <input type="number" name="p1_price" id="p1_price" class="form-control"  readonly>
+          </div>
+          <div class="my-2">
+            <label for="p1_xdate">Expiry Date</label>
+            <input type="date" name="p1_xdate" id="p1_xdate" class="form-control"  readonly>
+          </div>
+          <div class="my-2">
+            <label for="p1_available">Available</label>
+            <input type="number" name="p1_available" id="p1_available" class="form-control"  readonly>
+          </div>
+          <div class="my-2">
+            <label for="p2_available">Available Inventory Cost</label>
+            <input type="number" name="p2_available" id="p2_available" class="form-control"  readonly>
+          </div>
+          
+          <div class="mt-2" id="p1_image">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{{-- view product modal end --}}
 
 <body class="bg-light">
   <div class="container">
@@ -185,15 +239,46 @@
             _token: '{{ csrf_token() }}'
           },
           success: function(response) {
+            var formattedPrice = parseFloat(response.p_price).toFixed(2);
             $("#p_name").val(response.p_name);
             $("#p_unit").val(response.p_unit);
-            $("#p_price").val(response.p_price);
+            $("#p_price").val(formattedPrice);
             $("#p_xdate").val(response.p_xdate);
             $("#p_available").val(response.p_available);
             $("#p_image").html(
               `<img src="storage/images/${response.p_image}" width="100" class="img-fluid img-thumbnail">`);
             $("#prod_id").val(response.id);
             $("#prod_p_image").val(response.p_image);
+          }
+        });
+      });
+
+      // view product ajax request
+      $(document).on('click', '.viewIcon', function(e) {
+        e.preventDefault();
+        let id = $(this).attr('id');
+        $.ajax({
+          url: '{{ route('view1') }}',
+          method: 'get',
+          data: {
+            id: id,
+            _token: '{{ csrf_token() }}'
+          },
+          success: function(response) {
+
+            var result = response.p_available * response.p_price;
+            var formattedPrice = parseFloat(response.p_price).toFixed(2);
+            var formattedPrice1 = parseFloat(result).toFixed(2);
+            $("#p1_name").val(response.p_name);
+            $("#p1_unit").val(response.p_unit);
+            $("#p1_price").val(formattedPrice);
+            $("#p1_xdate").val(response.p_xdate);
+            $("#p1_available").val(response.p_available);
+            $("#p2_available").val(formattedPrice1);
+            $("#p1_image").html(
+              `<img src="storage/images/${response.p_image}" width="100" class="img-fluid img-thumbnail">`);
+            $("#prod1_id").val(response.id);
+            $("#prod1_p_image").val(response.p_image);
           }
         });
       });

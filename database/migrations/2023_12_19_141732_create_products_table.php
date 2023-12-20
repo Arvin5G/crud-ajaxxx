@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('p_name');
             $table->string('p_unit');
-            $table->decimal('p_price', 13, 4);
+            $table->decimal('p_price', 10, 2);
             $table->string('p_xdate');
             $table->integer('p_available');
             $table->string('p_image');
