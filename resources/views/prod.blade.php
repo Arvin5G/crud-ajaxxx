@@ -125,7 +125,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">View Product</h5>
+        <h5 class="modal-title text-primary" id="exampleModalLabel">View Product</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="#" method="POST" id="view_product_form" enctype="multipart/form-data">
@@ -178,8 +178,8 @@
     <div class="row my-5">
       <div class="col-lg-12">
         <div class="card shadow">
-          <div class="card-header bg-primary d-flex justify-content-between align-items-center p-4">
-            <h3 class="text-light">Manage Products</h3>
+          <div class="card-header bg-primary d-flex justify-content-between align-items-center p-3">
+            <h4 class="text-light">Manage Products</h4>
             <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-center align-items-center" style="border-radius: 50%; width: 40px; height: 40px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
                 class="bi bi-plus-square-dotted fs-5 text-primary"></i></button>
           </div>
@@ -194,7 +194,8 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     $(function() {
 
@@ -371,14 +372,6 @@
  
 
 <style>
-  .custom-swal-text{
-    color: #0d6efd;
-    background-color: #0d6efd;
-  }
-  #custom-swal-text{
-    color: #0d6efd;
-    background-color: #0d6efd;
-  }
   .table{
       max-width: 100%;
       overflow-x: auto;
@@ -390,7 +383,7 @@
   }
   .table thead th {
       border: none;
-      padding:none;
+      padding: 10px;
       color:#0d6efd;
       font-size: px;
   }
