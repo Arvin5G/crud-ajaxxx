@@ -20,7 +20,7 @@ class ProductController extends Controller {
 		$output = '';
 		if ($prods->count() > 0) {
 			$output .= '<table class="table pt-2 pb-2 table-striped table-sm text-center align-middle">
-            <thead class="table-primary">
+            <thead class="table-primary" style="font-size: 1rem;">
                 <tr>
                 <th>Product Name</th>
                 <th>Unit</th>
@@ -35,13 +35,13 @@ class ProductController extends Controller {
 			foreach ($prods as $prod1) {
 				$output .= '<tr>
                 
-                <td class="text-muted">' . $prod1->p_name . '</td>
-                <td class="text-muted">' . $prod1->p_unit . '</td>
-                <td class="text-muted">&#8369; ' . number_format($prod1->p_price, 2, '.', '') . '</td>
-                <td class="text-muted"> ' .Carbon::parse($prod1->p_xdate)->format('F j, Y'). '</td>
-                <td class="text-muted">' . $prod1->p_available . '</td>
-				<td class="text-muted"><img src="storage/images/' . $prod1->p_image . '" style="width: 60px; height: 60px;" ></td>
-                <td>
+                <td class="text-muted" style="font-size: 1rem;">' . $prod1->p_name . '</td>
+                <td class="text-muted" style="font-size: 1rem;">' . $prod1->p_unit . '</td>
+                <td class="text-muted" style="font-size: 1rem;">&#8369; ' . number_format($prod1->p_price, 2, '.', '') . '</td>
+                <td class="text-muted" style="font-size: 1rem;"> ' .Carbon::parse($prod1->p_xdate)->format('F j, Y'). '</td>
+                <td class="text-muted" style="font-size: 1rem;">' . $prod1->p_available . '</td>
+				<td class="text-muted"><img src="storage/images/' . $prod1->p_image . '" style="width: 5rem; height: 5rem;" ></td>
+                <td  style="font-size: 1rem;">
                   <a href="#" id="' . $prod1->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editProductModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-pencil-square fs-5"></i></a>
                   <a href="#" id="' . $prod1->id . '" class="mx-1 viewIcon" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-eye fs-5"></i></a>
                   <a href="#" id="' . $prod1->id . '" class="mx-1 deleteIcon" style="color: #fff;border-radius: 10%; color: #dc3545; "><i class="bi-trash fs-5"></i></a>
@@ -51,8 +51,8 @@ class ProductController extends Controller {
 			$output .= '</tbody></table>';
 			echo $output;
 		} else {
-			echo '<center><img src="https://cdn-icons-png.flaticon.com/128/7486/7486809.png" width="100" class=""></center>';
-			echo '<center><div class="d-flex justify-content-center"><h5 class="text-primary mt-3">No product found in database.</h5></div></center>';
+			echo '<center><img src="https://cdn-icons-png.flaticon.com/128/7486/7486809.png" width="100" style="font-size: 1rem;" class="pt-5"></center>';
+			echo '<center><div class="d-flex justify-content-center pb-5"><h5 class="text-primary mt-3" style="font-size: 1rem;">No product found in database.</h5></div></center>';
 		}
 	}
 
