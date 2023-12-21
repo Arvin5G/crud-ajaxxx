@@ -488,7 +488,7 @@
   }
 }
 .table-hover tbody tr:hover {
-  background-color: #0dfd493b;
+  background-color: #58585809;
 }
 </style>
 </body>
