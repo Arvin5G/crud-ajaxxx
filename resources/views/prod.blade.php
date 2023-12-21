@@ -214,12 +214,19 @@
           dataType: 'json',
           success: function(response) {
             if (response.status == 200) {
-                Swal.fire(
-                'Added!',
-                'Product Added Successfully!',
-                'success'
-              )
-              fetchAllProducts();
+              Swal.fire({
+                    icon: 'success',
+                    title: 'Updated Successfully',
+                    showConfirmButton: false,
+                    timer: 1700,
+                    timerProgressBar: false,
+                    toast: true,
+                    position: 'top',
+                    iconColor: '#0d6efd',
+                    customClass: {
+                      popup: 'colored-toast'
+                    },
+                  })
             }
             $("#add_product_button").text('Add Product');
             $("#add_product_form")[0].reset();
@@ -299,11 +306,19 @@
           dataType: 'json',
           success: function(response) {
             if (response.status == 200) {
-              Swal.fire(
-                'Updated!',
-                'Product Updated Successfully!',
-                'success'
-              )
+              Swal.fire({
+                    icon: 'success',
+                    title: 'Updated Successfully',
+                    showConfirmButton: false,
+                    timer: 1700,
+                    timerProgressBar: false,
+                    toast: true,
+                    position: 'top',
+                    iconColor: '#0d6efd',
+                    customClass: {
+                      popup: 'colored-toast'
+                    },
+                  })
               fetchAllProducts();
             }
             $("#edit_product_btn").text('Update Product');
@@ -382,17 +397,23 @@
       margin-bottom: 0;
   }
   .table thead th {
-      border: none;
-      padding: 10px;
-      color:#0d6efd;
-      font-size: px;
+    border: none;
+    padding: 10px;
+    color:#0d6efd;
   }
   .card-body {
-      max-width: 100% auto;
-      overflow-x: auto; /* Enable horizontal scrollbar if needed */
+    max-width: 100% auto;
+    overflow-x: auto; /* Enable horizontal scrollbar if needed */
   }
 
-  
+  .colored-toast.swal2-icon-success {
+    margin-top: 30px;
+    background-color: #fff !important;
+    border-radius: 50px;
+  }
+  .colored-toast .swal2-title {
+      color: #0d6efd;
+  }
   
   .vibrate-1 {
       -webkit-animation: vibrate-1 1s linear infinite both;
