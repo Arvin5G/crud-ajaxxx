@@ -19,7 +19,7 @@ class ProductController extends Controller {
 		$prods = Product::all();
 		$output = '';
 		if ($prods->count() > 0) {
-			$output .= '<table class="table pt-4 pb-4 table-striped table-sm text-center align-middle">
+			$output .= '<table class="table pt-4 pb-4 table-striped table-hover table-sm text-center align-middle">
             <thead class="table-primary" style="font-size: 1rem;">
                 <tr>
                 <th>Product Name</th>
@@ -28,22 +28,22 @@ class ProductController extends Controller {
                 <th>Expiry Date</th>
                 <th>Available</th>
                 <th>Image</th>
-				<th>Action</th>
+				<th class="disable-click">Action</th>
                 </tr>
             </thead>
             <tbody>';
 			foreach ($prods as $prod1) {
 				$output .= '<tr>
                 
-                <td class="text-muted" style="font-size: 1rem;">' . $prod1->p_name . '</td>
-                <td class="text-muted" style="font-size: 1rem;">' . $prod1->p_unit . '</td>
-                <td class="text-muted" style="font-size: 1rem;">&#8369; ' . number_format($prod1->p_price, 2, '.', '') . '</td>
-                <td class="text-muted" style="font-size: 1rem;"> ' .Carbon::parse($prod1->p_xdate)->format('F j, Y'). '</td>
-                <td class="text-muted" style="font-size: 1rem;">' . $prod1->p_available . '</td>
-				<td class="text-muted"><img src="storage/images/' . $prod1->p_image . '" style="width: 5rem; height: 5rem;" ></td>
-                <td  style="font-size: 1rem;">
+                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">' . $prod1->p_name . '</td>
+                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">' . $prod1->p_unit . '</td>
+                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">&#8369; ' . number_format($prod1->p_price, 2, '.', '') . '</td>
+                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;"> ' .Carbon::parse($prod1->p_xdate)->format('F j, Y'). '</td>
+                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">' . $prod1->p_available . '</td>
+				<td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" ><img src="storage/images/' . $prod1->p_image . '" style="width: 5rem; height: 5rem;" ></td>
+                <td style="font-size: 1rem;">
                   <a href="#" id="' . $prod1->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editProductModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-pencil-square fs-5"></i></a>
-                  <a href="#" id="' . $prod1->id . '" class="mx-1 viewIcon" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-eye fs-5"></i></a>
+                  
                   <a href="#" id="' . $prod1->id . '" class="mx-1 deleteIcon" style="color: #fff;border-radius: 10%; color: #dc3545; "><i class="bi-trash fs-5"></i></a>
                 </td>
               </tr>';
