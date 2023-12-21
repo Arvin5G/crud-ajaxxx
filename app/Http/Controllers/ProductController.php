@@ -19,7 +19,7 @@ class ProductController extends Controller {
 		$prods = Product::all();
 		$output = '';
 		if ($prods->count() > 0) {
-			$output .= '<table class="table pt-2 pb-2 table-striped table-sm text-center align-middle">
+			$output .= '<table class="table pt-4 pb-4 table-striped table-sm text-center align-middle">
             <thead class="table-primary" style="font-size: 1rem;">
                 <tr>
                 <th>Product Name</th>

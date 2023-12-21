@@ -183,9 +183,12 @@
             <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-center align-items-center" style="border-radius: 50%; width: 40px; height: 40px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
                 class="bi bi-plus-square-dotted fs-5 text-primary"></i></button>
           </div>
-          <div class="card-body p-3" id="show_all_products">
-            <h3 class="text-center text-primary my-5">Loading...</h3>
+          <div class="w-100 p-3">
+            <div class="card-body p-3" id="show_all_products">
+              <h3 class="text-center text-primary my-5">Loading...</h3>
+            </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -227,6 +230,7 @@
                       popup: 'colored-toast'
                     },
                   })
+                  fetchAllProducts();
             }
             $("#add_product_button").text('Add Product');
             $("#add_product_form")[0].reset();

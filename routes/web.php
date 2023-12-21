@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'prod']);
@@ -10,3 +11,5 @@ Route::delete('/delete1', [ProductController::class, 'delete1'])->name('delete1'
 Route::get('/edit1', [ProductController::class, 'edit1'])->name('edit1');
 Route::get('/view1', [ProductController::class, 'view1'])->name('view1');
 Route::post('/update1', [ProductController::class, 'update1'])->name('update1');
+
+Route::get('/test', [TestController::class, 'test']);
