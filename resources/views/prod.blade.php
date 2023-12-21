@@ -216,7 +216,7 @@
             if (response.status == 200) {
               Swal.fire({
                     icon: 'success',
-                    title: 'Updated Successfully',
+                    title: 'Added Successfully',
                     showConfirmButton: false,
                     timer: 1700,
                     timerProgressBar: false,
@@ -352,11 +352,19 @@
               },
               success: function(response) {
                 console.log(response);
-                Swal.fire(
-                  'Deleted!',
-                  'Your file has been deleted.',
-                  'success'
-                )
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted Successfully',
+                    showConfirmButton: false,
+                    timer: 1700,
+                    timerProgressBar: false,
+                    toast: true,
+                    position: 'top',
+                    iconColor: '#0d6efd',
+                    customClass: {
+                      popup: 'colored-toast'
+                    },
+                  })
                 fetchAllProducts();
               }
             });
@@ -410,6 +418,10 @@
     margin-top: 30px;
     background-color: #fff !important;
     border-radius: 50px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
   }
   .colored-toast .swal2-title {
       color: #0d6efd;
