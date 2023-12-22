@@ -29,7 +29,7 @@
               <h3 class="text-center text-primary my-5">Loading...</h3>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -177,12 +177,12 @@
             <label for="p2_available">Available Inventory Cost</label>
             <input type="number" name="p2_available" id="p2_available" class="form-control"  readonly>
           </div>
-          
+
           <div class="mt-2" id="p1_image">
-            
+
           </div>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
@@ -193,7 +193,7 @@
 {{-- view product modal end --}}
 
 
-  
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
@@ -388,7 +388,7 @@
             "paging": true, // Enable pagination
             "searching": true, // Enable search bar
             "ordering": true, // Disable sorting
-            "responsive": true,
+            "responsive": true
             });
           }
         });
@@ -410,6 +410,23 @@
     startVibration();
     setTimeout(stopVibration, 3000); // Stop after 3 seconds
   }, 5000); // Start every 5 seconds
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Handle "Select All" checkbox
+        $('#selectAll').on('change', function () {
+            $('.select-checkbox').prop('checked', $(this).prop('checked'));
+        });
+
+        // Handle individual checkbox change
+        $('.select-checkbox').on('change', function () {
+            var allChecked = $('.select-checkbox:checked').length === $('.select-checkbox').length;
+            $('#selectAll').prop('checked', allChecked);
+        });
+
+        // ... other JavaScript code ...
+    });
 </script>
 
 <style>
@@ -448,7 +465,7 @@
   .colored-toast .swal2-title {
       color: #0d6efd;
   }
-  
+
   @keyframes vibrateAnimation {
       0% { transform: translate(0); }
       25% { transform: translate(-2px, 2px); }

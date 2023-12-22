@@ -10,16 +10,8 @@ use Carbon\Carbon;
 class TestController extends Controller
 {
     public function test() {
-		$data = Product::all();
-        return view('test', compact('data'));
+		$data = Product::count();
+        $data1 = Product::all();
+        return view('test', compact('data','data1'));
 	}
-
-  public function displayData(Request $request)
-    {
-        $data = Product::all(); // Replace ... with your actual data source
-
-        $inputId = $request->input('inputId');
-
-        return view('your-view-name', compact('data', 'inputId'));
-    }
 }
