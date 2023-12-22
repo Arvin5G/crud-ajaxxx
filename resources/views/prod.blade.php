@@ -15,7 +15,26 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 
 </head>
-
+<body class="bg-light">
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-lg-12">
+        <div class="card shadow">
+          <div class="card-header bg-primary d-flex justify-content-between align-items-center p-3">
+            <h4 class="text-light">Manage Products</h4>
+            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-evenly text-primary align-items-center" style="border-radius: 20px; width: 170px; height: 40px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
+                class="bi bi-plus-square-dotted fs-5 text-primary"></i>Add Product</button>
+          </div>
+          <div class="w-100 p-3 d-flex">
+            <div class="card-body p-3" id="show_all_products">
+              <h3 class="text-center text-primary my-5">Loading...</h3>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 {{-- add new product modal start --}}
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="exampleModalLabel"
   data-bs-backdrop="static" aria-hidden="true">
@@ -173,26 +192,8 @@
 </div>
 {{-- view product modal end --}}
 
-<body class="bg-light">
-  <div class="container">
-    <div class="row my-5">
-      <div class="col-lg-12">
-        <div class="card shadow">
-          <div class="card-header bg-primary d-flex justify-content-between align-items-center p-3">
-            <h4 class="text-light">Manage Products</h4>
-            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-center align-items-center" style="border-radius: 50%; width: 40px; height: 40px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
-                class="bi bi-plus-square-dotted fs-5 text-primary"></i></button>
-          </div>
-          <div class="w-100 p-3 d-flex">
-            <div class="card-body p-3" id="show_all_products">
-              <h3 class="text-center text-primary my-5">Loading...</h3>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
+
+  
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
@@ -486,6 +487,16 @@
     -webkit-transform: translate(0);
             transform: translate(0);
   }
+}
+.modal.fade .modal-dialog {
+    transform: translate(0, -50%);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translate(0, 0);
+    opacity: 1;
 }
 .table-hover tbody tr:hover {
   background-color: #58585809;
