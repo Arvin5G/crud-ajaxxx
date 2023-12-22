@@ -13,4 +13,13 @@ class TestController extends Controller
 		$data = Product::all();
         return view('test', compact('data'));
 	}
+
+  public function displayData(Request $request)
+    {
+        $data = Product::all(); // Replace ... with your actual data source
+
+        $inputId = $request->input('inputId');
+
+        return view('your-view-name', compact('data', 'inputId'));
+    }
 }

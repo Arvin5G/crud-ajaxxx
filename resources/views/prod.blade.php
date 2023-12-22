@@ -9,8 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Arvin Crud Laravel & Ajax</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
-  <link rel='stylesheet'
-    href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
+  <link rel='stylesheet'href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 
@@ -22,10 +21,10 @@
         <div class="card shadow">
           <div class="card-header bg-primary d-flex justify-content-between align-items-center p-3">
             <h4 class="text-light">Manage Products</h4>
-            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-evenly text-primary align-items-center" style="border-radius: 20px; width: 170px; height: 40px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
+            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-evenly text-primary align-items-center gap-2" style="border-radius: 20px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
                 class="bi bi-plus-square-dotted fs-5 text-primary"></i>Add Product</button>
           </div>
-          <div class="w-100 p-3 d-flex">
+          <div class="w-100 p-3">
             <div class="card-body p-3" id="show_all_products">
               <h3 class="text-center text-primary my-5">Loading...</h3>
             </div>
@@ -180,9 +179,10 @@
           </div>
           
           <div class="mt-2" id="p1_image">
-
+            
           </div>
         </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
@@ -198,11 +198,9 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     $(function() {
-
       // add new product ajax request
       $("#add_product_form").submit(function(e) {
         e.preventDefault();
@@ -289,7 +287,7 @@
             $("#p1_available").val(response.p_available);
             $("#p2_available").val(formattedPrice1);
             $("#p1_image").html(
-              `<img src="storage/images/${response.p_image}" width="100" class="img-fluid img-thumbnail">`);
+              `<img src="storage/images/${response.p_image}" width="300" class="img-fluid img-thumbnail">`);
             $("#prod1_id").val(response.id);
             $("#prod1_p_image").val(response.p_image);
           }
@@ -389,21 +387,40 @@
             $("table").DataTable({
             "paging": true, // Enable pagination
             "searching": true, // Enable search bar
-            "ordering": false // Disable sorting
-            
+            "ordering": true, // Disable sorting
+            "responsive": true,
             });
           }
         });
       }
     });
   </script>
- 
+ <script>
+  function startVibration() {
+    var button = document.querySelector('.vibrate-1');
+    button.style.animation = 'vibrateAnimation 0.3s ease-in-out infinite';
+  }
+
+  function stopVibration() {
+    var button = document.querySelector('.vibrate-1');
+    button.style.animation = 'none';
+  }
+
+  setInterval(function() {
+    startVibration();
+    setTimeout(stopVibration, 3000); // Stop after 3 seconds
+  }, 5000); // Start every 5 seconds
+</script>
 
 <style>
   .table{
       max-width: 100%;
       overflow-x: auto;
   }
+  table tr:hover {
+      cursor: pointer;
+      color: #0d6efd;
+    }
   .table tbody td {
       padding: auto;
       border:none;
@@ -432,62 +449,17 @@
       color: #0d6efd;
   }
   
-  .vibrate-1 {
-      -webkit-animation: vibrate-1 1s linear infinite both;
-      animation: vibrate-1 1s linear infinite both;
-  }
-  @-webkit-keyframes vibrate-1 {
-  0% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-  }
-  20% {
-    -webkit-transform: translate(-2px, 2px);
-            transform: translate(-2px, 2px);
-  }
-  40% {
-    -webkit-transform: translate(-2px, -2px);
-            transform: translate(-2px, -2px);
-  }
-  60% {
-    -webkit-transform: translate(2px, 2px);
-            transform: translate(2px, 2px);
-  }
-  80% {
-    -webkit-transform: translate(2px, -2px);
-            transform: translate(2px, -2px);
-  }
-  100% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-  }
-}
-@keyframes vibrate-1 {
-  0% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-  }
-  20% {
-    -webkit-transform: translate(-2px, 2px);
-            transform: translate(-2px, 2px);
-  }
-  40% {
-    -webkit-transform: translate(-2px, -2px);
-            transform: translate(-2px, -2px);
-  }
-  60% {
-    -webkit-transform: translate(2px, 2px);
-            transform: translate(2px, 2px);
-  }
-  80% {
-    -webkit-transform: translate(2px, -2px);
-            transform: translate(2px, -2px);
-  }
-  100% {
-    -webkit-transform: translate(0);
-            transform: translate(0);
-  }
-}
+  @keyframes vibrateAnimation {
+      0% { transform: translate(0); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(-2px, -2px); }
+    }
+
+    .vibrate-1 {
+      animation: none; /* initially, no animation */
+    }
 .modal.fade .modal-dialog {
     transform: translate(0, -50%);
     opacity: 0;
@@ -498,6 +470,16 @@
     transform: translate(0, 0);
     opacity: 1;
 }
+
+/* Override the Bootstrap modal fade-out animation */
+    .modal.fade .modal-dialog {
+      transition: transform 0.3s ease-out;
+      transform: translate(0, -50%);
+    }
+
+    .modal.fade.show .modal-dialog {
+      transform: translate(0, 0);
+    }
 .table-hover tbody tr:hover {
   background-color: #58585809;
 }
