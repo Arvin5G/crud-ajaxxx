@@ -19,16 +19,16 @@ class ProductController extends Controller {
 		$prods = Product::all();
 		$output = '';
 		if ($prods->count() > 0) {
-			$output .= '<table class="table pt-4 pb-4 table-striped table-hover table-sm text-center align-middle">
+			$output .= '<table id="example" class="display nowrap border-2 border" style="width:100%">
             <thead class="table-primary">
                 <tr>
-                <th>Product Name</th>
-                <th>Unit</th>
-                <th>Price</th>
-                <th>Expiry Date</th>
-                <th>Available</th>
-                <th>Image</th>
-				<th class="disable-click">Action</th>
+                    <th>Product Name</th>
+                    <th>Unit</th>
+                    <th>Price</th>
+                    <th>Expiry Date</th>
+                    <th>Available</th>
+                    <th>Image</th>
+                    <th class="disable-click">Action</th>
                 </tr>
             </thead>
             <tbody>';

@@ -8,20 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Arvin Crud Laravel & Ajax</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel='stylesheet'href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
+  <link rel='stylesheet' href='https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css' />
+  <link rel='stylesheet'href='https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.css' />
+  <link rel='stylesheet'href='https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css' />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 
 </head>
 <body class="bg-light">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row my-5">
       <div class="col-lg-12">
-        <div class="card shadow">
+        <div class="card shadow-sm">
           <div class="card-header bg-primary d-flex justify-content-between align-items-center p-3">
             <h4 class="text-light">Manage Products</h4>
-            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 btn btn-light d-flex justify-content-evenly text-primary align-items-center gap-2" style="border-radius: 20px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
+            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 shadow btn btn-light d-flex justify-content-evenly text-primary align-items-center gap-2" style="border-radius: 20px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
                 class="bi bi-plus-square-dotted fs-5 text-primary"></i>Add Product</button>
           </div>
           <div class="w-100 p-3">
@@ -193,10 +195,15 @@
 {{-- view product modal end --}}
 
 
+<script src='https://code.jquery.com/jquery-3.7.1.js'></script>
+<script src='https://cdn.datatables.net/2.0.2/js/dataTables.js'></script>
+<script src='https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.js'></script>
+<script src='https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.dataTables.js'></script>
+<script src='https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js'></script>
+<script src='https://cdn.datatables.net/responsive/3.0.0/js/responsive.dataTables.js'></script>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
@@ -220,7 +227,7 @@
                     icon: 'success',
                     title: 'Added Successfully',
                     showConfirmButton: false,
-                    timer: 1700,
+                    timer: 3000,
                     timerProgressBar: false,
                     toast: true,
                     position: 'top',
@@ -313,7 +320,7 @@
                     icon: 'success',
                     title: 'Updated Successfully',
                     showConfirmButton: false,
-                    timer: 1700,
+                    timer: 3000,
                     timerProgressBar: false,
                     toast: true,
                     position: 'top',
@@ -359,7 +366,7 @@
                     icon: 'success',
                     title: 'Deleted Successfully',
                     showConfirmButton: false,
-                    timer: 1700,
+                    timer: 3000,
                     timerProgressBar: false,
                     toast: true,
                     position: 'top',
@@ -384,89 +391,75 @@
           method: 'get',
           success: function(response) {
             $("#show_all_products").html(response);
-            $("table").DataTable({
-            "paging": true, // Enable pagination
-            "searching": true, // Enable search bar
-            "ordering": true, // Disable sorting
-            "responsive": true
+            new DataTable('#example', {
+                responsive: true,
+                rowReorder: {
+                    selector: 'td:nth-child(2)'
+                }
             });
           }
         });
       }
     });
   </script>
- <script>
-  function startVibration() {
-    var button = document.querySelector('.vibrate-1');
-    button.style.animation = 'vibrateAnimation 0.3s ease-in-out infinite';
-  }
 
-  function stopVibration() {
-    var button = document.querySelector('.vibrate-1');
-    button.style.animation = 'none';
-  }
-
-  setInterval(function() {
-    startVibration();
-    setTimeout(stopVibration, 3000); // Stop after 3 seconds
-  }, 5000); // Start every 5 seconds
-</script>
-
-<script>
-    $(document).ready(function () {
-        // Handle "Select All" checkbox
-        $('#selectAll').on('change', function () {
-            $('.select-checkbox').prop('checked', $(this).prop('checked'));
-        });
-
-        // Handle individual checkbox change
-        $('.select-checkbox').on('change', function () {
-            var allChecked = $('.select-checkbox:checked').length === $('.select-checkbox').length;
-            $('#selectAll').prop('checked', allChecked);
-        });
-
-        // ... other JavaScript code ...
-    });
-</script>
-
-<style>
-  .table{
-      max-width: 100%;
-      overflow-x: auto;
-  }
-  table tr:hover {
-      cursor: pointer;
-      color: #0d6efd;
+  {{-- vibrate button --}}
+  <script>
+    function startVibration() {
+      var button = document.querySelector('.vibrate-1');
+      button.style.animation = 'vibrateAnimation 0.3s ease-in-out infinite';
     }
-  .table tbody td {
-      padding: auto;
-      border:none;
-      margin-bottom: 0;
-  }
-  .table thead th {
-    border: none;
-    padding: 10px;
-    color:#0d6efd;
-  }
-  .card-body {
-    max-width: 100% auto;
-    overflow-x: auto; /* Enable horizontal scrollbar if needed */
-  }
 
-  .colored-toast.swal2-icon-success {
-    margin-top: 30px;
-    background-color: #fff !important;
-    border-radius: 50px;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-  }
-  .colored-toast .swal2-title {
-      color: #0d6efd;
-  }
+    function stopVibration() {
+      var button = document.querySelector('.vibrate-1');
+      button.style.animation = 'none';
+    }
 
-  @keyframes vibrateAnimation {
+    setInterval(function() {
+      startVibration();
+      setTimeout(stopVibration, 3000); // Stop after 3 seconds
+    }, 5000); // Start every 5 seconds
+  </script>
+
+  <style>
+    /* .table{
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    table tr:hover {
+        cursor: pointer;
+        color: #0d6efd;
+      }
+    .table tbody td {
+        padding: auto;
+        border:none;
+        margin-bottom: 0;
+    }
+    .table thead th {
+      border: none;
+      padding: 10px;
+      color:#0d6efd;
+    } */
+    .card-body {
+      max-width: 100% auto;
+      overflow-x: auto; /* Enable horizontal scrollbar if needed */
+    }
+
+    .colored-toast.swal2-icon-success {
+      margin-top: 30px;
+      background-color: #fff !important;
+      border-radius: 50px;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      font-size: 15px;
+    }
+    .colored-toast .swal2-title {
+        color: #0d6efd;
+    }
+
+    @keyframes vibrateAnimation {
       0% { transform: translate(0); }
       25% { transform: translate(-2px, 2px); }
       50% { transform: translate(2px, -2px); }
@@ -477,30 +470,29 @@
     .vibrate-1 {
       animation: none; /* initially, no animation */
     }
-.modal.fade .modal-dialog {
-    transform: translate(0, -50%);
-    opacity: 0;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-}
-
-.modal.fade.show .modal-dialog {
-    transform: translate(0, 0);
-    opacity: 1;
-}
-
-/* Override the Bootstrap modal fade-out animation */
     .modal.fade .modal-dialog {
-      transition: transform 0.3s ease-out;
-      transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     }
 
     .modal.fade.show .modal-dialog {
-      transform: translate(0, 0);
+        transform: translate(0, 0);
+        opacity: 1;
     }
-.table-hover tbody tr:hover {
-  background-color: #58585809;
-}
-</style>
-</body>
 
+    /* Override the Bootstrap modal fade-out animation */
+        .modal.fade .modal-dialog {
+          transition: transform 0.3s ease-out;
+          transform: translate(0, -50%);
+        }
+
+        .modal.fade.show .modal-dialog {
+          transform: translate(0, 0);
+        }
+    /* .table-hover tbody tr:hover {
+      background-color: #58585809;
+    } */
+  </style>
+</body>
 </html>

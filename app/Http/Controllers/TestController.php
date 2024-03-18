@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 class TestController extends Controller
 {
     public function test() {
-		$data = Product::count();
-        $data1 = Product::all();
-        return view('test', compact('data','data1'));
+
+        $employees = Product::get();
+        $count = Product::count();
+
+        return view('test', compact('employees', 'count'));
+
 	}
+    public function view_prod(Request $request){
+
+		$view_prod = Product::find($request -> id);
+		return response()->json($view_prod);
+    }
 }
