@@ -18,7 +18,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="https://eu.ui-avatars.com/api/?name=John+Doe&size=250" alt="Profile Pic">
+                    <img src="https://eu.ui-avatars.com/api/?name=John+Doe&size" alt="Profile Pic">
                 </span>
             </div>
         </header>
