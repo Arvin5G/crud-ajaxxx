@@ -19,9 +19,10 @@ class ProductController extends Controller {
 		$prods = Product::all();
 		$output = '';
 		if ($prods->count() > 0) {
-			$output .= '<table id="example" class="display nowrap border-2 border" style="width:100%">
-            <thead class="table-primary">
+			$output .= '<table id="example" class="table-hover table-bordered" style="width:100%;">
+            <thead class="table-secondary" style="width:100%;">
                 <tr>
+                    <th>ID</th>
                     <th>Product Name</th>
                     <th>Unit</th>
                     <th>Price</th>
@@ -33,18 +34,20 @@ class ProductController extends Controller {
             </thead>
             <tbody>';
 			foreach ($prods as $prod1) {
-				$output .= '<tr>
-
-                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">' . $prod1->p_name . '</td>
-                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">' . $prod1->p_unit . '</td>
-                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">&#8369; ' . number_format($prod1->p_price, 2, '.', '') . '</td>
-                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;"> ' .Carbon::parse($prod1->p_xdate)->format('F j, Y'). '</td>
-                <td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" style="font-size: 1rem;">' . $prod1->p_available . '</td>
-				<td id="' . $prod1->id . '" class="viewIcon text-muted" data-bs-toggle="modal" data-bs-target="#viewProductModal" ><img src="storage/images/' . $prod1->p_image . '" style="width: 5rem; height: 5rem;" ></td>
-                <td style="font-size: 1rem;">
-                  <a href="#" id="' . $prod1->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editProductModal" style="color: #0d6efd;border-radius: 10%; "><i class="bi-pencil-square fs-5"></i></a>
-
-                  <a href="#" id="' . $prod1->id . '" class="mx-1 deleteIcon" style="color: #fff;border-radius: 10%; color: #dc3545; "><i class="bi-trash fs-5"></i></a>
+				$output .= '<tr class="text-muted">
+                <td id="' . $prod1->id . '" style="font-size: 1rem;">' . $prod1->id . '</td>
+                <td id="' . $prod1->id . '" style="font-size: 1rem;">' . $prod1->p_name . '</td>
+                <td id="' . $prod1->id . '" style="font-size: 1rem;">' . $prod1->p_unit . '</td>
+                <td id="' . $prod1->id . '" style="font-size: 1rem;">&#8369; ' . number_format($prod1->p_price, 2, '.', '') . '</td>
+                <td id="' . $prod1->id . '" style="font-size: 1rem;"> ' .Carbon::parse($prod1->p_xdate)->format('F j, Y'). '</td>
+                <td id="' . $prod1->id . '" style="font-size: 1rem;">' . $prod1->p_available . '</td>
+				<td id="' . $prod1->id . '"><img src="storage/images/' . $prod1->p_image . '" style="width: 2rem; height: 2rem;" ></td>
+                <td>
+                    <div class="col d-flex gap-2">
+                        <a href="#" id="' . $prod1->id . '" class="btn btn-outline-secondary btn-sm editIcon w-100 d-flex align-items-center justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi-pencil"></i>Edit</a>
+                        <a href="#" id="' . $prod1->id . '" class="btn btn-outline-secondary btn-sm viewIcon w-100 d-flex align-items-center justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#viewProductModal"><i class="bi-eye"></i>View</a>
+                        <a href="#" id="' . $prod1->id . '" class="btn btn-outline-secondary btn-sm deleteIcon w-100 d-flex align-items-center justify-content-center gap-2"><i class="bi-trash"></i>Delete</a>
+                    </div>
                 </td>
               </tr>';
 			}

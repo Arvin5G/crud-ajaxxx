@@ -17,6 +17,14 @@ class TestController extends Controller
         return view('test', compact('employees', 'count'));
 
 	}
+    public function test1() {
+
+        $employees = Product::get();
+        $count = Product::count();
+
+        return view('test1', compact('employees', 'count'));
+
+	}
     public function view_prod(Request $request){
 
 		$view_prod = Product::find($request -> id);

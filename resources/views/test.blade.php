@@ -4,25 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    {{-- bootstrap5 --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     {{-- datatable start --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.bootstrap5.css">
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.jqueryui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.jqueryui.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/4.0.1/css/fixedHeader.dataTables.css">
     {{-- datatable end --}}
 
     <style>
-        div.container {
-            width: 80%;
-        }
+
     </style>
 
   </head>
-  <body class="bg-light">
+  <body class="bg-white">
     {{-- <div class="container">
         <div class="card-body">
             {{ $employees->first()->p_name }}
@@ -69,12 +70,12 @@
         </div>
     </div> --}}
     <div class="container">
-        <div class="card mt-5 mb-5 shadow-sm border-0">
-            <div class="card-header bg-white">
-                <h4 class="mt-1">Table Sample</h4>
-            </div>
-            <div class="card-body table-responsive">
-                <table id="example" class="table table-hover mt-3 w-100">
+        <div class="card mt-5 mb-5 shadow bg-white border-0" style="border-radius: 30px">
+            {{-- <div class="card-header bg-white">
+                <h4 class="mt-1">Table ng Mundo</h4>
+            </div> --}}
+            <div class="card-body">
+                <table id="example" class="table-bordered" style="width:100%; font-size: smaller;">
                     <thead>
                         <tr>
                             <th>Seq.</th>
@@ -204,17 +205,17 @@
 
 
 
-
+    {{-- bootstrap5 --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     {{-- datatable start --}}
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.jqueryui.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.jqueryui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
@@ -226,14 +227,18 @@
     <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.dataTables.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.dataTables.js"></script>
+
+    <script src="https://cdn.datatables.net/fixedheader/4.0.1/js/dataTables.fixedHeader.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/4.0.1/js/fixedHeader.dataTables.js"></script>
     {{-- datatable end --}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         new DataTable('#example', {
-            ordering: false,
+            ordering: true,
             responsive: true,
             stateSave: true,
+            fixedHeader: true,
             language: {
                 search: "Search here: "
             },
@@ -246,11 +251,16 @@
                     buttons: [
                         'pageLength',
                         'colvis',
-                        // {
-                        //     extend: 'colvis',
-                        //     text:'<i class="fas fa-eye"></i>',
-                        //     titleAttr: 'Column visibility',
-                        // },
+                        {
+                            extend: 'copy',
+                            text:'<i class="fas fa-copy"></i>',
+                            titleAttr: 'Copy to clipboard',
+                            exportOptions: {
+                                rows: ':visible',
+                                columns: ':visible'
+                            },
+                        },
+
                         {
 
                             text: '<i class="fas fa-file-code"></i>',
@@ -261,24 +271,18 @@
                                 DataTable.fileSave(new Blob([JSON.stringify(data)]), 'Sample of json_file.json');
                             }
                         },
-                        {
-                            extend: 'copy',
-                            text:'<i class="fas fa-copy"></i>',
-                            titleAttr: 'Copy to clipboard',
-                            exportOptions: {
-                                rows: ':visible',
-                                columns: ':visible'
-                            },
-                        },
+
                         {
                             extend: 'csvHtml5',
                             text:'<i class="fas fa-file-csv"></i>',
                             titleAttr: 'Download as CSV',
+                            title:"Monthly sales of the company.",
                             exportOptions: {
                                 rows: ':visible',
                                 columns: ':visible'
                             },
                         },
+
                         {
                             extend: 'excelHtml5',
                             text:'<i class="fas fa-file-excel"></i>',
@@ -291,6 +295,7 @@
                                 columns: ':visible'
                             },
                         },
+
                         {
                             extend: 'pdfHtml5',
                             text:'<i class="fas fa-file-pdf"></i>',
@@ -298,18 +303,19 @@
                             messageTop:
                                 'This print was produced using the Print button for DataTables',
                             title:"Monthly sales of the company.",
-                            download: 'open',
+                            // download: 'open',
                             exportOptions: {
                                 rows: ':visible',
                                 columns: ':visible'
                             },
                         },
+
                         {
                             extend: 'print',
                             text:'<i class="fas fa-print"></i>',
                             titleAttr: 'Print the table',
                             messageTop:
-                                'This print was produced using the Print button for DataTables',
+                                'Customized message here...',
                             title:"Monthly sales of the company.",
                             exportOptions: {
                                 rows: ':visible',
@@ -328,6 +334,7 @@
                                     .css('font-size', 'inherit');
                             },
                         }
+
                     ]
                 }
             }

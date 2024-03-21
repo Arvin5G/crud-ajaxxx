@@ -10,25 +10,36 @@
   <title>Arvin Crud Laravel & Ajax</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel='stylesheet'href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
-  <link rel='stylesheet' href='https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css' />
-  <link rel='stylesheet'href='https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.css' />
-  <link rel='stylesheet'href='https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css' />
+  {{-- datatable start --}}
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.jqueryui.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.jqueryui.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/4.0.1/css/fixedHeader.dataTables.css">
+  {{-- datatable end --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 
 </head>
 <body class="bg-light">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row my-5">
       <div class="col-lg-12">
-        <div class="card shadow-sm">
-          <div class="card-header bg-primary d-flex justify-content-between align-items-center p-3">
-            <h4 class="text-light">Manage Products</h4>
-            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="vibrate-1 shadow btn btn-light d-flex justify-content-evenly text-primary align-items-center gap-2" style="border-radius: 20px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
-                class="bi bi-plus-square-dotted fs-5 text-primary"></i>Add Product</button>
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white d-flex justify-content-between align-items-center p-3">
+            <h4 class="text-secondary">Manage Products</h4>
+            <button data-toggle="tooltip" data-placement="top" title="Add Product" class="shadow-sm btn btn-outline-secondary d-flex justify-content-evenly align-items-center gap-2" style="border-radius: 20px;" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
+                class="bi bi-plus-square-dotted fs-5"></i>Add Product</button>
           </div>
           <div class="w-100 p-3">
-            <div class="card-body p-3" id="show_all_products">
-              <h3 class="text-center text-primary my-5">Loading...</h3>
+            <div class="card-body table-responsive" id="show_all_products">
+              <div class="d-flex justify-content-center gap-2 m-5">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -194,16 +205,34 @@
 </div>
 {{-- view product modal end --}}
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<script src='https://code.jquery.com/jquery-3.7.1.js'></script>
-<script src='https://cdn.datatables.net/2.0.2/js/dataTables.js'></script>
-<script src='https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.js'></script>
-<script src='https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.dataTables.js'></script>
-<script src='https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js'></script>
-<script src='https://cdn.datatables.net/responsive/3.0.0/js/responsive.dataTables.js'></script>
+{{-- datatable start --}}
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.jqueryui.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.jqueryui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.colVis.min.js"></script>
+
+<script src="https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.dataTables.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.dataTables.js"></script>
+
+<script src="https://cdn.datatables.net/fixedheader/4.0.1/js/dataTables.fixedHeader.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/4.0.1/js/fixedHeader.dataTables.js"></script>
+{{-- datatable end --}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
@@ -287,6 +316,7 @@
             var result = response.p_available * response.p_price;
             var formattedPrice = parseFloat(response.p_price).toFixed(2);
             var formattedPrice1 = parseFloat(result).toFixed(2);
+
             $("#p1_name").val(response.p_name);
             $("#p1_unit").val(response.p_unit);
             $("#p1_price").val(formattedPrice);
@@ -391,12 +421,111 @@
           method: 'get',
           success: function(response) {
             $("#show_all_products").html(response);
-            new DataTable('#example', {
-                responsive: true,
-                rowReorder: {
-                    selector: 'td:nth-child(2)'
-                }
-            });
+                new DataTable('#example', {
+                    ordering: true,
+                    responsive: true,
+                    stateSave: true,
+                    fixedHeader: true,
+                    language: {
+                        search: "Search here: "
+                    },
+                    rowReorder: {
+                        selector: 'td:nth-child(2)',
+                        snapX: 50
+                    },
+                    layout: {
+                        topStart: {
+                            buttons: [
+                                'pageLength',
+                                'colvis',
+                                {
+                                    extend: 'copy',
+                                    text:'<i class="bi-files"></i>',
+                                    titleAttr: 'Copy to clipboard',
+                                    exportOptions: {
+                                        rows: ':visible',
+                                        columns: ':visible'
+                                    },
+                                },
+
+                                {
+
+                                    text: '<i class="bi-file-earmark-text"></i>',
+                                    titleAttr: 'Download as JSON',
+                                    action: function (e, dt, button, config) {
+                                        var data = dt.buttons.exportData();
+
+                                        DataTable.fileSave(new Blob([JSON.stringify(data)]), 'Sample of json_file.json');
+                                    }
+                                },
+
+                                {
+                                    extend: 'csvHtml5',
+                                    text:'<i class="bi-file-earmark-spreadsheet"></i>',
+                                    titleAttr: 'Download as CSV',
+                                    title:"Monthly sales of the company.",
+                                    exportOptions: {
+                                        rows: ':visible',
+                                        columns: ':visible'
+                                    },
+                                },
+
+                                {
+                                    extend: 'excelHtml5',
+                                    text:'<i class="bi-file-earmark-excel"></i>',
+                                    titleAttr: 'Download as Excel',
+                                    messageTop:
+                                        'This print was produced using the Print button for DataTables',
+                                    title:"Monthly sales of the company.",
+                                    exportOptions: {
+                                        rows: ':visible',
+                                        columns: ':visible'
+                                    },
+                                },
+
+                                {
+                                    extend: 'pdfHtml5',
+                                    text:'<i class="bi-file-earmark-pdf"></i>',
+                                    titleAttr: 'Download as PDF',
+                                    messageTop:
+                                        'This print was produced using the Print button for DataTables',
+                                    title:"Monthly sales of the company.",
+                                    // download: 'open',
+                                    exportOptions: {
+                                        rows: ':visible',
+                                        columns: ':visible'
+                                    }
+                                },
+
+                                {
+                                    extend: 'print',
+                                    text:'<i class="bi-printer"></i>',
+                                    titleAttr: 'Print the table',
+                                    messageTop:
+                                        'Customized message here...',
+                                    title:"Monthly sales of the company.",
+                                    exportOptions: {
+                                        rows: ':visible',
+                                        columns: ':visible'
+                                    },
+                                    customize: function (win) {
+                                        $(win.document.body)
+                                            .css('font-size', '8pt')
+                                            .prepend(
+                                                '<img  width="64" height="64" src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/external-global-business-and-management-kiranshastry-gradient-kiranshastry.png" style="opacity: 20%;width:400px; height: auto; position:absolute; top:50%; left:50%; transform: translate(-50%, -50%);" />'
+                                            );
+
+                                        $(win.document.body)
+                                            .find('table')
+                                            .addClass('compact')
+                                            .css('font-size', 'inherit');
+                                    },
+                                }
+
+                            ]
+                        }
+                    }
+                });
           }
         });
       }
@@ -422,30 +551,6 @@
   </script>
 
   <style>
-    /* .table{
-        max-width: 100%;
-        overflow-x: auto;
-    }
-
-    table tr:hover {
-        cursor: pointer;
-        color: #0d6efd;
-      }
-    .table tbody td {
-        padding: auto;
-        border:none;
-        margin-bottom: 0;
-    }
-    .table thead th {
-      border: none;
-      padding: 10px;
-      color:#0d6efd;
-    } */
-    .card-body {
-      max-width: 100% auto;
-      overflow-x: auto; /* Enable horizontal scrollbar if needed */
-    }
-
     .colored-toast.swal2-icon-success {
       margin-top: 30px;
       background-color: #fff !important;
@@ -490,9 +595,6 @@
         .modal.fade.show .modal-dialog {
           transform: translate(0, 0);
         }
-    /* .table-hover tbody tr:hover {
-      background-color: #58585809;
-    } */
   </style>
 </body>
 </html>

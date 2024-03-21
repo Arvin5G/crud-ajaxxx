@@ -13,4 +13,5 @@ Route::get('/view1', [ProductController::class, 'view1'])->name('view1');
 Route::post('/update1', [ProductController::class, 'update1'])->name('update1');
 
 Route::get('/test', [TestController::class, 'test'])->name('test');
+Route::get('/test1', [TestController::class, 'test1'])->name('test1');
 Route::get('/view_prod', [TestController::class, 'view_prod'])->name('view_prod');
